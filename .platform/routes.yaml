@@ -17,5 +17,5 @@
 
 "https://api.{default}/":
     type: redirect
-    id: "api"
+    id: 'api'
     to: "https://www.api.{default}/"
