@@ -1,81 +1,51 @@
-/**
- * Implement Gatsby's Node APIs in this file.
- *
- * See: https://www.gatsbyjs.org/docs/node-apis/
- */
-
-// You can delete this file if you're not using it
-
-const path = require(`path`);
-
-const makeRequest = (graphql, request) => new Promise((resolve, reject) => {
-  // Query for article nodes to use in creating pages.
-  resolve(
-    graphql(request).then(result => {
-      if (result.errors) {
-        reject(result.errors)
+exports.createPages = async ({ graphql, actions }) => {
+  const { createPage } = actions
+  const result = await graphql(
+    `
+      {
+        articles: allStrapiArticle {
+          edges {
+            node {
+              strapiId
+            }
+          }
+        }
+        categories: allStrapiCategory {
+          edges {
+            node {
+              strapiId
+            }
+          }
+        }
       }
-
-      return result;
-    })
+    `
   )
-});
 
+  if (result.errors) {
+    throw result.errors
+  }
 
-// Implement the Gatsby API “createPages”. This is called once the
-// data layer is bootstrapped to let plugins create pages from data.
-exports.createPages = ({ actions, graphql }) => {
-  const { createPage } = actions;
+  // Create blog articles pages.
+  const articles = result.data.articles.edges
+  const categories = result.data.categories.edges
 
-  const getArticles = makeRequest(graphql, `
-    {
-      allStrapiArticle {
-        edges {
-          node {
-            id
-          }
-        }
-      }
-    }
-    `).then(result => {
-    // Create pages for each article.
-    result.data.allStrapiArticle.edges.forEach(({ node }) => {
-      createPage({
-        path: `/${node.id}`,
-        component: path.resolve(`src/templates/article.js`),
-        context: {
-          id: node.id,
-        },
-      })
+  articles.forEach((article, index) => {
+    createPage({
+      path: `/article/${article.node.strapiId}`,
+      component: require.resolve("./src/templates/article.js"),
+      context: {
+        id: article.node.strapiId,
+      },
     })
-  });
+  })
 
-  const getAuthors = makeRequest(graphql, `
-    {
-      allStrapiUser {
-        edges {
-          node {
-            id
-          }
-        }
-      }
-    }
-    `).then(result => {
-    // Create pages for each user.
-    result.data.allStrapiUser.edges.forEach(({ node }) => {
-      createPage({
-        path: `/authors/${node.id}`,
-        component: path.resolve(`src/templates/author.js`),
-        context: {
-          id: node.id,
-        },
-      })
+  categories.forEach((category, index) => {
+    createPage({
+      path: `/category/${category.node.strapiId}`,
+      component: require.resolve("./src/templates/category.js"),
+      context: {
+        id: category.node.strapiId,
+      },
     })
-  });
-
-  // Queries for articles and authors nodes to use in creating pages.
-  return Promise.all([
-    getArticles,
-    getAuthors,
-  ])
-};
+  })
+}
