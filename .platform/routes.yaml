@@ -11,11 +11,11 @@
     type: redirect
     to: "https://www.{default}/"
 
-"https://www.api.{default}/":
+"https://www.backend.{default}/":
     type: upstream
     upstream: "backend:http"
 
-"https://api.{default}/":
+"https://backend.{default}/":
     type: redirect
-    id: 'api'
-    to: "https://www.api.{default}/"
+    id: 'strapi'
+    to: "https://www.backend.{default}/"
