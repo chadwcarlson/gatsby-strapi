@@ -1,10 +1,27 @@
 const config = require("platformsh-config").config();
 
-// var backend_route = config.getRoute("strapi").url;
+// require("dotenv").config({
+//   path: `.env.${process.env.NODE_ENV}`,
+// })
 
-require("dotenv").config({
-  path: `.env.${process.env.NODE_ENV}`,
-})
+// require("dotenv").config();
+
+var backend_route = "";
+if ( config.isValidPlatform() ) {
+  require("dotenv").config({
+    path: `.env.${process.env.NODE_ENV}`,
+  })
+  backend_route = config.getRoute("strapi").url.substring(0, config.getRoute("strapi").url.length - 1);
+} else {
+  require("dotenv").config()
+  backend_route = process.env.API_URL;
+}
+
+// try {
+//   backend_route = config.getRoute("strapi").url.substring(0, config.getRoute("strapi").url.length - 1);
+// } catch {
+//   backend_route = process.env.API_URL;
+// }
 
 module.exports = {
   siteMetadata: {
@@ -24,8 +41,7 @@ module.exports = {
     {
       resolve: "gatsby-source-strapi",
       options: {
-        // apiURL: backend_route.substring(0, backend_route.length - 1),
-        apiURL: "https://www.backend.pr-1-djjnuwy-muwzogvpcpoe2.eu-3.platformsh.site",
+        apiURL: backend_route,
         contentTypes: [
           // List of the Content Types you want to be able to request from Gatsby.
           "article",
