@@ -22,8 +22,8 @@ module.exports = {
     {
       resolve: "gatsby-source-strapi",
       options: {
-        // apiURL: config.getRoute("strapi").url.split("/")[2],
-        apiURL: "api.pr-1-djjnuwy-muwzogvpcpoe2.eu-3.platformsh.site",
+        apiURL: config.getRoute("strapi").url.substring(0, str.length - 1),
+        apiURL: "https://www.api.pr-1-djjnuwy-muwzogvpcpoe2.eu-3.platformsh.site",
         contentTypes: [
           // List of the Content Types you want to be able to request from Gatsby.
           "article",
