@@ -1,11 +1,5 @@
 const config = require("platformsh-config").config();
 
-// require("dotenv").config({
-//   path: `.env.${process.env.NODE_ENV}`,
-// })
-
-// require("dotenv").config();
-
 var backend_route = "";
 if ( config.isValidPlatform() ) {
   require("dotenv").config({
@@ -16,12 +10,6 @@ if ( config.isValidPlatform() ) {
   require("dotenv").config()
   backend_route = process.env.API_URL;
 }
-
-// try {
-//   backend_route = config.getRoute("strapi").url.substring(0, config.getRoute("strapi").url.length - 1);
-// } catch {
-//   backend_route = process.env.API_URL;
-// }
 
 module.exports = {
   siteMetadata: {

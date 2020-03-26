@@ -13,7 +13,6 @@ Gatsby is a free and open source framework based on React that helps developers 
 ## Services
 
 * Node.js 12
-* PHP 7.3
 * MariaDB 10.4
 
 ## Post-install
