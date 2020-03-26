@@ -13,8 +13,9 @@
 
 "https://www.api.{default}/":
     type: upstream
+    id: "api"
     upstream: "backend:http"
 
 "https://api.{default}/":
     type: redirect
-    to: "https://www.{default}/"
+    to: "https://www.api.{default}/"
