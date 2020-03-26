@@ -16,6 +16,7 @@ rm config/environments/development/server.json && mv platformsh/server.json conf
 rm public/index.html && mv platformsh/index.html public/index.html
 
 # Rebuild the admin panel.
+yarn strapi install graphql
 yarn build
 
 # Make start command executable.

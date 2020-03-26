@@ -32,10 +32,8 @@ The following files and additions make the framework work.  If using this projec
 ## References
 
 * [Gatsby](https://www.gatsbyjs.org/)
-* [gatsby-source-wordpress](https://www.gatsbyjs.org/packages/gatsby-source-wordpress/)
-* [WordPress Source Plugin Tutorial](https://www.gatsbyjs.org/tutorial/wordpress-source-plugin-tutorial/)
-* [Node.js http](https://nodejs.org/api/http.html#http_http)
+* [gatsby-source-strapi](https://github.com/strapi/gatsby-source-strapi)
+* [Building a Static Blog using Gatsby and Strapi](https://strapi.io/blog/build-a-static-blog-with-gatsby-and-strapi)
+* [Gatsby CMS with Strapi](https://strapi.io/gatsby-cms)
+* [Strapi](https://strapi.io/)
 * [Node.js on Platform.sh](https://docs.platform.sh/languages/nodejs.html)
-* [WordPress](https://wordpress.org/)
-* [WordPress on Platform.sh](https://docs.platform.sh/frameworks/wordpress.html)
-* [PHP on Platform.sh](https://docs.platform.sh/languages/php.html)
