@@ -13,7 +13,7 @@ hooks:
       npm run build
 
 # The size of the persistent disk of the application (in MB).
-disk: 5120
+disk: 1024
 
 # The configuration of the application when it is exposed to the web.
 web:
