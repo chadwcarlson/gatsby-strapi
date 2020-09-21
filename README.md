@@ -1,3 +1,7 @@
+>  ## ARCHIVE:
+>
+> See [the Platform.sh template](https://github.com/platformsh-templates/gatsby-strapi) for current repository.
+
 # Gatsby Strapi multi-app for Platform.sh
 
 <p align="center">
